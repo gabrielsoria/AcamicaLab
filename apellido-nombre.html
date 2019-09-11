@@ -17,20 +17,13 @@
                     &nbsp;
                     Proyecto 2 - DWFS-COR8
             </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Trabajos
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">
+                            Principal 
+                            <span class="sr-only"></span>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="index.html">Principal</a>
-                            <a class="dropdown-item" href="index-gabriel-soria.html">Soria Gabriel</a>
-
-                            <!-- DESCOMENTAR PARA AGREGAR TU TRABAJO -->
-                            <!-- <a class="dropdown-item" href="index-nombre-apellido.html">Nombre Apellido</a> -->
-
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -111,7 +104,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                <!-- <tr>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">5</td>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -124,7 +122,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Alta de persona</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -156,66 +154,14 @@
                     <button type="button" 
                         class="btn btn-primary" 
                         data-dismiss="modal"
-                        onclick="leerPersona()">
+                        onclick="agregarPersona()">
                         Guardar
                     </button>
                 </div>
                 </div>
             </div>
         </div>
-        <button id="btnUpdate" type="button" class="btn" style="visibility:visible" data-target="#mdlUpdate" data-toggle="modal">test</button>
 
-        <div class="modal fade" id="mdlUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Actualizar persona</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Id</label>
-                                <input id="idUpdate" disabled class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Nombre</label>
-                                <input id="nombreUpdate" class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Apellido</label>
-                                <input id="apellidoUpdate" class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Edad</label>
-                                <input id="edadUpdate" class="form-control" type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" 
-                            class="btn btn-secondary" 
-                            data-dismiss="modal">
-                            Cancelar
-                        </button>
-                        <button type="button" 
-                            class="btn btn-primary" 
-                            data-dismiss="modal"
-                            onclick="leerPersonaActualizada()">
-                            Guardar
-                        </button>
-                    </div>
-                    </div>
-                </div>
-            </div>
 
 
         <script src="./js/index.js"></script>
