@@ -1,0 +1,158 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- Image and text -->
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img 
+                    src="http://accionrh.com/wp-content/uploads/2019/06/logo-acamica-e1561247597386.jpg" 
+                    width="100" 
+                    height="30" 
+                    class="d-inline-block align-top" alt="Acamica">
+                    &nbsp;
+                    Proyecto 2 - DWFS-COR8
+            </a>
+       </nav>
+        <div class="container">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Arrays y bucles
+                </div>
+                <div class="card-body">
+                    <div class="row pull-right">
+                        <div class="col"></div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" 
+                                    class="form-control" 
+                                    placeholder="Buscar por nombre" 
+                                    aria-label="Recipient's username" 
+                                    aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button 
+                                        class="btn btn-outline-primary" 
+                                        type="button" id="button-addon2">
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <div class="btn-group mb-2">
+                                <button 
+                                    class="btn btn-secondary btn-sm dropdown-toggle" 
+                                    type="button" data-toggle="dropdown" 
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Acciones
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" 
+                                        data-toggle="modal"
+                                        data-target="#mdlPersona"
+                                        type="button">Agregar persona
+                                    </button>
+                                    <button class="dropdown-item" 
+                                        type="button">
+                                        Eliminar primero
+                                    </button>
+                                    <button class="dropdown-item" 
+                                        type="button">
+                                        Eliminar ultimo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-4 pull-rigth">
+                            <button type="button" 
+                                data-toggle="modal"
+                                data-target="#exampleModal"
+                                onclick="agregarPersona()" class="btn btn-primary">
+                                Agregar
+                            </button>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <table id="tablePersonas" class="table table-hover table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Apellido</th>
+                                    <th class="text-center">Edad</th>
+                                    <th class="text-center">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="mdlPersona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Alta de persona</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="form-label">Nombre</label>
+                            <input id="nombre" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="form-label">Apellido</label>
+                            <input id="apellido" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="form-label">Edad</label>
+                            <input id="edad" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" 
+                        class="btn btn-secondary" 
+                        data-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" 
+                        class="btn btn-primary" 
+                        data-dismiss="modal"
+                        onclick="agregarPersona()">
+                        Guardar
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="./js/index.js"></script>
+    </body>
+</html>
