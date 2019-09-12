@@ -65,7 +65,15 @@
                         <hr>
                     </div>
                     <div class="row">
-                        <div class="col-12 text-right">
+                        <div class="col text-left">
+                            <button class="btn btn-sm btn-primary" 
+                                data-toggle="modal"
+                                data-target="#mdlPersona"
+                                onclick="limpiarNuevaPersona()"
+                                type="button">Agregar persona
+                            </button>
+                        </div>
+                        <div class="col text-right">
                             <div class="btn-group mb-2">
                                 <button 
                                     class="btn btn-secondary btn-sm dropdown-toggle" 
@@ -74,12 +82,7 @@
                                     Acciones
                                 </button>
                                 <div class="dropdown-menu">
-                                    <button class="dropdown-item" 
-                                        data-toggle="modal"
-                                        data-target="#mdlPersona"
-                                        onclick="limpiarNuevaPersona()"
-                                        type="button">Agregar persona
-                                    </button>
+                                    
                                     <button class="dropdown-item" 
                                         onclick="eliminarPrimero()"
                                         type="button">
