@@ -1,7 +1,66 @@
 
 personas = [];
 identificador = 1;
+personasEncontradas = [];
 
+/**
+ * limpia la busqueda de persona.
+ */
+function limpiarBusquedaPersona() {
+
+    recargarLista(personas);
+}
+
+/**
+ * 
+ * @param {string} nombre 
+ */
+function buscarPersonaPorNombre(nombre) {
+
+    personasEncontradas = [];
+    for(var i = 0; i < personas.length; i++) {
+
+        if(personas[i].nombre.toLowerCase().search(nombre.toLowerCase()) > -1) {
+            personasEncontradas.push(personas[i]);
+        }
+    }
+
+    recargarLista(personasEncontradas);
+
+}
+
+/**
+ * elimina el primer registro
+ */
+function eliminarPrimero() {
+
+    if(personas.length == 0) {
+        return;
+    }
+
+    personas.shift();
+
+    recargarLista(personas);
+}
+
+/**
+ * elimina el ultimo registro
+ */
+function eliminarUltimo() {
+
+    if(personas.length == 0) {
+        return;
+    }
+
+    personas.pop();
+
+    recargarLista(personas);
+}
+
+/**
+ * abre una persona para editarla
+ * @param {number} id 
+ */
 function editarPersona(id) {
 
     var index = buscarPorId(personas, id);
@@ -59,7 +118,10 @@ function agregarPersona(nombre, apellido, edad) {
 function eliminarPersona(idPersona) {
 
     
-    var index = buscarPorId(idPersona);
+    var index = buscarPorId(personas, idPersona);
+
+    if(index < 0)
+        return;
 
     personas.splice(index, 1);
 
@@ -153,13 +215,56 @@ function recargarLista(personas) {
  */
 function leerPersona() {
 
+    // si no es valido el form, fin.
+    if(!isNuevaPersonaValid())
+        return;
+
     // datos de la persona
     let nombre = document.getElementById("nombre").value;
     let apellido = document.getElementById("apellido").value;
     let edad = document.getElementById("edad").value;
 
+    // close modal.
+    document.getElementById("btnCloseNuevaPersona").click();
+
     // metodo que va a agregar una persona
     agregarPersona(nombre, apellido, edad);
+}
+
+/**
+ * valida el formulario de nueva persona.
+ */
+function isNuevaPersonaValid() {
+
+    // formulario de validacion
+    var form = document.getElementById('frmPersona');
+    
+    // chequea la validacion
+    if (form.checkValidity() === false) {
+
+        form.classList.add('was-validated');
+        return false;
+    }
+    
+    // valid
+    return true;
+}
+
+
+function validarActualizacionPersona() {
+
+    // formulario de validacion
+    var form = document.getElementById('frmUpdatePersona');
+
+    // chequea la validacion
+    if (form.checkValidity() === false) {
+
+        form.classList.add('was-validated');
+        return false;
+    }
+    
+    // valid
+    return true;
 }
 
 
@@ -167,6 +272,8 @@ function leerPersona() {
  * funcion de agregar persona
  */
 function abrirActualizacionPersona(persona) {
+
+    limpiarActualizarPersona();
 
     // datos de la persona
     document.getElementById("idUpdate").value = persona.id;
@@ -183,14 +290,71 @@ function abrirActualizacionPersona(persona) {
  */
 function leerPersonaActualizada() {
 
+    if(!validarActualizacionPersona())
+        return;
+
     // datos de la persona
     let id = document.getElementById("idUpdate").value;
     let nombre = document.getElementById("nombreUpdate").value;
     let apellido = document.getElementById("apellidoUpdate").value;
     let edad = document.getElementById("edadUpdate").value;
 
+    document.getElementById("btnCloseUpdatePersona").click();
+
     // metodo que va a agregar una persona
     actualizarPersona(id, nombre, apellido, edad);
+}
+
+/**
+ * limpia el modal de nueva persona.
+ */
+function limpiarNuevaPersona() {
+    
+    // formulario de validacion
+    var form = document.getElementById('frmPersona');
+        
+    form.classList.remove('was-validated');
+
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellido").value = "";
+    document.getElementById("edad").value = "";
+
+}
+
+/**
+ * limpia el modal de nueva persona.
+ */
+function limpiarActualizarPersona() {
+    
+    // formulario de validacion
+    var form = document.getElementById('frmUpdatePersona');
+        
+    form.classList.remove('was-validated');
+}
+
+/**
+ * evento de busqueda de personas
+ */
+function onBusquedaPersona() {
+
+    let criterio = document.getElementById("busquedaNombre").value;
+
+    if(!nombre) {
+        return;
+    }
+
+    buscarPersonaPorNombre(criterio);
+}
+
+/**
+ * evento de limpiar busqueda.
+ */
+function onLimpiarBusquedaPersona() {
+
+    document.getElementById("busquedaNombre").value = "";
+
+    limpiarBusquedaPersona();
+
 }
 
 

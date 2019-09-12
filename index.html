@@ -15,7 +15,7 @@
                     height="30" 
                     class="d-inline-block align-top" alt="Acamica">
                     &nbsp;
-                    Proyecto 2 - DWFS-COR8
+                    DWFS-COR8
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -24,11 +24,9 @@
                             Trabajos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="index.html">Principal</a>
-                            <a class="dropdown-item" href="index-gabriel-soria.html">Soria Gabriel</a>
 
-                            <!-- DESCOMENTAR PARA AGREGAR TU TRABAJO -->
-                            <!-- <a class="dropdown-item" href="index-nombre-apellido.html">Nombre Apellido</a> -->
+                            <!-- EDITAR PARA AGREGAR TU TRABAJO -->
+                            <a class="dropdown-item" href="apellido-nombre.html">Apellido, Nombre</a>
 
                         </div>
                     </li>
@@ -48,13 +46,19 @@
                                 <input type="text" 
                                     class="form-control" 
                                     placeholder="Buscar por nombre" 
-                                    aria-label="Recipient's username" 
-                                    aria-describedby="button-addon2">
+                                    id="busquedaNombre">
                                 <div class="input-group-append">
                                     <button 
                                         class="btn btn-outline-primary" 
+                                        onclick="onBusquedaPersona()"
                                         type="button" id="button-addon2">
                                         Buscar
+                                    </button>
+                                    <button 
+                                        class="btn btn-outline-primary" 
+                                        onclick="onLimpiarBusquedaPersona()"
+                                        type="button">
+                                        Reset
                                     </button>
                                 </div>
                             </div>
@@ -77,27 +81,22 @@
                                     <button class="dropdown-item" 
                                         data-toggle="modal"
                                         data-target="#mdlPersona"
+                                        onclick="limpiarNuevaPersona()"
                                         type="button">Agregar persona
                                     </button>
                                     <button class="dropdown-item" 
+                                        onclick="eliminarPrimero()"
                                         type="button">
                                         Eliminar primero
                                     </button>
                                     <button class="dropdown-item" 
+                                        onclick="eliminarUltimo()"
                                         type="button">
                                         Eliminar ultimo
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-sm-4 pull-rigth">
-                            <button type="button" 
-                                data-toggle="modal"
-                                data-target="#exampleModal"
-                                onclick="agregarPersona()" class="btn btn-primary">
-                                Agregar
-                            </button>
-                        </div> -->
                     </div>
                     <div class="row">
                         <table id="tablePersonas" class="table table-hover table-striped table-sm">
@@ -111,7 +110,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
                             </tbody>
                         </table>
                     </div>
@@ -121,49 +119,60 @@
         <div class="modal fade" id="mdlPersona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Alta de persona</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label class="form-label">Nombre</label>
-                            <input id="nombre" class="form-control" type="text">
-                        </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Alta de persona</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label class="form-label">Apellido</label>
-                            <input id="apellido" class="form-control" type="text">
-                        </div>
+                    <div class="modal-body">
+                        <form id="frmPersona" novalidate>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input id="nombre" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un nombre
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input id="apellido" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un apellido
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="edad">Edad</label>
+                                    <input id="edad" class="form-control" type="number" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese una edad
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label class="form-label">Edad</label>
-                            <input id="edad" class="form-control" type="text">
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" 
+                            id="btnCloseNuevaPersona"
+                            class="btn btn-secondary" 
+                            data-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="button" 
+                            class="btn btn-primary" 
+                            onclick="leerPersona()">
+                            Guardar
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" 
-                        class="btn btn-secondary" 
-                        data-dismiss="modal">
-                        Cancelar
-                    </button>
-                    <button type="button" 
-                        class="btn btn-primary" 
-                        data-dismiss="modal"
-                        onclick="leerPersona()">
-                        Guardar
-                    </button>
-                </div>
                 </div>
             </div>
         </div>
-        <button id="btnUpdate" type="button" class="btn" style="visibility:visible" data-target="#mdlUpdate" data-toggle="modal">test</button>
+        <button id="btnUpdate" type="button" class="btn" style="visibility:hidden" data-target="#mdlUpdate" data-toggle="modal">test</button>
 
         <div class="modal fade" id="mdlUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
@@ -175,40 +184,51 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Id</label>
-                                <input id="idUpdate" disabled class="form-control" type="text">
+                        <form id="frmUpdatePersona" novalidate>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Id</label>
+                                    <input id="idUpdate" disabled class="form-control" type="text">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Nombre</label>
-                                <input id="nombreUpdate" class="form-control" type="text">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Nombre</label>
+                                    <input id="nombreUpdate" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un nombre
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Apellido</label>
-                                <input id="apellidoUpdate" class="form-control" type="text">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Apellido</label>
+                                    <input id="apellidoUpdate" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un apellido
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Edad</label>
-                                <input id="edadUpdate" class="form-control" type="text">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Edad</label>
+                                    <input id="edadUpdate" class="form-control" type="number" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese una edad
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" 
+                            id="btnCloseUpdatePersona"
                             class="btn btn-secondary" 
                             data-dismiss="modal">
                             Cancelar
                         </button>
                         <button type="button" 
                             class="btn btn-primary" 
-                            data-dismiss="modal"
                             onclick="leerPersonaActualizada()">
                             Guardar
                         </button>
